@@ -10,10 +10,14 @@ const expect = Chai.expect;
 
 contract("BAKU test", async (accounts) => {
 	let contractInstance;
+  let BakuToken;
 	const [deployerAccount, recipient, anotherAccount] = accounts;
 
 	beforeEach(async () => {
-		contractInstance = await Baku.deployed();
+    // Coupled to the migrations
+    // contractInstance = await Baku.deployed();
+    BakuToken = await Baku.new(10000000);
+		contractInstance = BakuToken;
 	});
 
 	it("all tokens should be in my account", async () => {
