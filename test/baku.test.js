@@ -1,12 +1,9 @@
-const Chai = require("chai");
+const BN = web3.utils.BN;
+const expect = require('./chai').expect;
+
+const config = require('../config');
 
 const Baku = artifacts.require("./Baku.sol");
-
-const BN = web3.utils.BN;
-
-Chai.use(require("chai-bn")(web3.utils.BN));
-
-const expect = Chai.expect;
 
 contract("BAKU test", async (accounts) => {
 	let contractInstance;
@@ -16,7 +13,7 @@ contract("BAKU test", async (accounts) => {
 	beforeEach(async () => {
     // Coupled to the migrations
     // contractInstance = await Baku.deployed();
-    BakuToken = await Baku.new(10000000);
+    BakuToken = await Baku.new(config.INITIAL_TOKENS);
 		contractInstance = BakuToken;
 	});
 
